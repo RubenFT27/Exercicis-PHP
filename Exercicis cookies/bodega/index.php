@@ -1,14 +1,3 @@
-<?php
-if($_POST != ""){
-setcookie("majoredat", $_POST['majoredat']);
-setcookie("idioma", $_POST['idioma']);
-setcookie("moneda", $_POST['moneda']);
-}
-
-
-
-?>
-
 <html>
     <head></head>
     <body>
@@ -22,7 +11,7 @@ setcookie("moneda", $_POST['moneda']);
                 <select name="idioma">
                         <option value="cat">Catala</option>
                         <option value="esp">Español</option>
-                        <option value="eng ">English</option>
+                        <option value="eng">English</option>
                     </select><br>
                 <p>Quina moneda fas servir?</p>
                 <select name="moneda">
@@ -30,7 +19,25 @@ setcookie("moneda", $_POST['moneda']);
                         <option value="dol">Dollars</option>
                         <option value="lib">Lliures</option>
                     </select><br><br>
-                <input type="submit" value="Envia">
+                <input type="submit" name="envia" value="Envia">
         </form>
     </body>
 </html>
+
+<?php
+$majoredat = "";
+$idioma = "";
+$moneda = "";
+if(isset($_POST['envia'])){
+    $majoredat = $_POST['majoredat'];
+    $idioma = $_POST['idioma'];
+    $moneda = $_POST['moneda'];
+    setcookie("majoredat", $majoredat);
+    setcookie("idioma", $idioma);
+    setcookie("moneda", $moneda);
+    header("Location: redirect.php");
+}
+setcookie("majoredat", $majoredat);
+setcookie("idioma", $idioma);
+setcookie("moneda", $moneda);
+?>
